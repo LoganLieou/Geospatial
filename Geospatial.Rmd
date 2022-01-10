@@ -1,0 +1,40 @@
+---
+title: "GeospatialMapping"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+### Visualizing Geospatial Data
+
+Using the leaflet library we can quickly load in some geo-spatial data, then visualize it on a map very easily.
+
+```{r, echo=FALSE}
+library(leaflet)
+leaflet(quakes) %>% addTiles() %>% addMarkers(
+  clusterOptions = markerClusterOptions()
+)
+```
+
+### Popups and Markers
+
+You can quickly create markers for various places.
+
+```{r, echo=FALSE}
+content <- paste(sep = "<br/>",
+  "<b><a href=''>UT Dallas</a></b>",
+  "800 W Campbell Road",
+  "Richardson, TX 75040"
+)
+
+leaflet() %>% addTiles() %>%
+  addPopups(-96.748254, 32.985636, content,
+    options = popupOptions(closeButton = FALSE)
+  )
+```
+
+### Learning on Geospatial Data
+
+So I eventually want to come back to this data, in order to do some cool machine learning on it but as of right now I am really lazy and just wanted to look at leaflet becuase it looks so cool, but later on I will be implementing learning on geospatial data.
